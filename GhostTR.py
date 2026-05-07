@@ -23,6 +23,8 @@ Mage = '\033[1;35m'
 Cy = '\033[1;36m'
 Wh = '\033[1;37m'
 
+# Default timeout (in seconds) for all API requests — increased from 10 to 15 to reduce timeout errors on slow connections
+DEFAULT_TIMEOUT = 15
 
 # utilities
 
@@ -42,7 +44,7 @@ def IP_Track():
     ip = input(f"{Wh}\n Enter IP target : {Gr}")  # INPUT IP ADDRESS
     print()
     print(f' {Wh}============= {Gr}SHOW INFORMATION IP ADDRESS {Wh}=============')
-    req_api = requests.get(f"http://ipwho.is/{ip}", timeout=10)  # API IPWHOIS.IS — added timeout to avoid hanging indefinitely
+    req_api = requests.get(f"http://ipwho.is/{ip}", timeout=DEFAULT_TIMEOUT)  # API IPWHOIS.IS — using DEFAULT_TIMEOUT constant
     ip_data = json.loads(req_api.text)
     time.sleep(2)
     print(f"{Wh}\n IP target       :{Gr}", ip)
@@ -70,5 +72,4 @@ def IP_Track():
     print(f"{Wh} ISP             :{Gr}", ip_data["connection"]["isp"])
     print(f"{Wh} Domain          :{Gr}", ip_data["connection"]["domain"])
     print(f"{Wh} ID              :{Gr}", ip_data["timezone"]["id"])
-    print(f"{Wh} ABBR            :{Gr}", ip_data["timezone"]["abbr"])
-    print(f"{Wh} DST             :{Gr}", ip_data
+    print(f"{Wh} ABBR      
