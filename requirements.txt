@@ -1,3 +1,4 @@
 requests
 phonenumbers
 colorama
+rich  # nicer terminal output, optional but useful
